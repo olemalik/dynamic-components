@@ -11,6 +11,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { ProfileComponent } from './profile/profile.component';
+import { OKTA_CONFIG, OktaAuthModule } from '@okta/okta-angular';
+import { OktaAuth } from '@okta/okta-auth-js';
+
+const oktaAuth = new OktaAuth({
+  issuer: 'https://dev-41109427.okta.com/oauth2/default',
+  clientId: '{0oa88ltxbmViNfLn05d7}',
+  redirectUri: window.location.origin + '/login/callback'
+});
 
 @NgModule({
   declarations: [
@@ -26,9 +34,12 @@ import { ProfileComponent } from './profile/profile.component';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    OktaAuthModule
   ],
-  providers: [],
+  providers: [
+    { provide: OKTA_CONFIG, useValue: { oktaAuth } }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

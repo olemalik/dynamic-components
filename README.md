@@ -28,3 +28,37 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Reference URL
 https://developer.okta.com/blog/2021/12/08/angular-dynamic-components
+
+### Add authentication
+To begin with,  free Okta developer account, install the Okta CLI and run `okta register` to sign up for a new account.
+ * macOS installation [https://cli.okta.com/manual/]
+    1. `brew install --cask oktadeveloper/tap/okta` 
+    2. To update to a new version:`brew reinstall okta`    
+    3. To register : `okta register` , An account activation email has been sent to you.
+    4. Bash / Zsh Completion, If you have “bash-completion” installed run one of the following commands:
+        `okta generate-completion > /usr/local/etc/bash_completion.d/okta`
+    5. run the following commands:
+       `okta generate-completion > ~/okta.bash`
+       `echo `. ~/okta.bash` >> ~/.bash_profile`
+    6. if you would like to use an existing account, use `okta login` instead.
+        An existing Okta Organization (https://dev-41109427.okta.com) was found in ../.okta/okta.yaml
+        Overwrite configuration file? [Y/n]n
+    7. Run `okta apps create --app-name dynamic-components`
+    8. Use `http://localhost:4200/login/callback` for the Redirect URI and set the Logout 
+        Redirect URI  to `http://localhost:4200`.
+    
+* Install okta package on angular app: `npm install @okta/okta-angular@4 @okta/okta-auth-js@5.8 --save`
+    Open `srcs/app/app.module.ts` and create an OktaAuth instance by adding the following before the      
+    NgModule and replacing the placeholders with the Issuer and Client ID from earlier.
+    
+* Next, add OktaAuthModule to the imports array and configure the provider for the OKTA_CONFIG token, as 
+  shown : ` providers: [ { provide: OKTA_CONFIG, useValue: { oktaAuth } }]`
+
+* Okta has a component for the login callback, but we need to add the route. Open src/app/app- 
+   `routing.module.ts` and add the following to your routes array. 
+   `{ path: 'login/callback', component: OktaCallbackComponent }`
+
+* We also want to guard the Protected component route to authenticated users. Okta has a guard we can use. 
+   Open `src/app/protected/protected-routing.module.ts` to add a `canActivate` guard to the default route. 
+   Your routes array will look like the code snippet below.
+   `const routes: Routes = [{ path: '', component: ProtectedComponent, canActivate: [OktaAuthGuard] }];`
