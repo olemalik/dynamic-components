@@ -45,8 +45,8 @@ export class MenuComponent implements OnInit, OnDestroy {
   }
   
   public async login(): Promise<void> {  
-    await this._oktaAuth.signInWithRedirect().then(  
-      _ => this._router.navigate(['/protected'])  
+    await this._oktaAuth.signInWithRedirect().then( 
+      _ => this._router.navigate(['protected'])  
     );  
   }  
   

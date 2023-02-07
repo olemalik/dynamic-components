@@ -5,8 +5,8 @@ import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [  
   { path: 'login/callback', component: OktaCallbackComponent },
-  { path: '', component: HomeComponent },
-  { path: 'protected', loadChildren: () => import('./protected/protected.module').then(m => m.ProtectedModule) }  
+  { path: 'protected', loadChildren: () => import('./protected/protected.module').then(m => m.ProtectedModule) },
+  { path: '', component: HomeComponent },  
  ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

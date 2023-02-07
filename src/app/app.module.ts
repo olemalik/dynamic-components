@@ -16,7 +16,7 @@ import { OktaAuth } from '@okta/okta-auth-js';
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-41109427.okta.com/oauth2/default',
-  clientId: '{0oa88ltxbmViNfLn05d7}',
+  clientId: '0oa88ltxbmViNfLn05d7',
   redirectUri: window.location.origin + '/login/callback'
 });
 

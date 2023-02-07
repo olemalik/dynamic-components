@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `  
     <div class="welcome">
       <h2 class="mat-display-1">Welcome! Log in to get started.</h2>
-      <img src="assets/welcome.svg" alt="welcome illustration" />
+      <img src="assets/images/welcome.jpg" alt="welcome illustration" />
     </div> `,  
   styles: [`  
     .welcome {
