@@ -127,9 +127,21 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "dynamic-components"
+  "defaultProject": "dynamic-components",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
